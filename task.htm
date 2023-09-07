@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,400&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="task.css" type="text/css">
+</head>
+<body>
+    <main>
+        <div class="box">
+            <div class="image">
+                <img 
+                    src="3.jpg" 
+                    alt="Slack Display Image"
+                    data-testid="slackUserName"
+                >
+                <p class="hover-text">@Ruby-Tech</p>
+            </div>
+            <div class="text-block">
+                <h1 class="name" data-testid="slackUserName">
+                    <span class="in">Name: </span>
+                    Reuben Alabi
+                </h1>
+                <h2 class="time-class" data-testid="currentDayOfTheWeek">
+                    <span class="in">Today is:</span> 
+                    <span class="time" id="day"></span>
+            </h2>
+
+                <h2 class="time-class" data-testid="currentUTCTime">
+                    <span class="in">The Time is:</span> 
+                    <span class="time" id="time"></span>
+            </h2>
+                <h2 class="track" data-testid="myTrack">
+                    <span class="in">Track: </span>
+                    Frontend
+                </h2>
+                <a href="https://github.com/ruby-tech1" class="link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </main> 
+    <script>
+    // Get the current date and time from MomentJS
+
+    const dis = document.getElementById("day");
+    
+    if(new Date().getDay() == 0) {
+        dis.textContent = "Sunday";
+    } else if (new Date().getDay() == 1){
+        dis.textContent= "Monday";
+    } else if (new Date().getDay() == 2){
+        dis.textContent= "Tuesday";
+    } else if (new Date().getDay() == 3){
+        dis.textContent= "Wednesday";
+    } else if (new Date().getDay() == 4){
+        dis.textContent= "Thursday";
+    } else if (new Date().getDay() == 5){
+        dis.textContent= "Friday";
+    } else if (new Date().getDay() == 6){
+        dis.textContent= "Saturday";
+    } 
+
+    function refreshTime() {
+        const timeDisplay = document.getElementById("time");
+        let d = new Date();
+        let localTime = d.getTime();
+        let localOffset = d.getTimezoneOffset() * 60000;
+        utc = localTime + localOffset;
+        timeDisplay.textContent = new Date(utc).toLocaleTimeString();
+    }
+    setInterval(refreshTime, 1000);
+
+    </script>
+</body>
+</html>
